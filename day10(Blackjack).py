@@ -15,6 +15,8 @@ logo = """
 cards = [11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def check_cards():
+    """Check if user or computer have Blackjack."""
+
     if 11 in comp_cards and 10 in comp_cards:
         print(f"\tYour final hand: {user_cards}, final score: {sum(user_cards)}")
         print(f"\tComputer's final hand: {comp_cards}, final score: {sum(comp_cards)}")
@@ -30,6 +32,8 @@ def check_cards():
         print(f"\tComputer's first card: {comp_cards[0]}")
 
 def scores():
+    """Compares the scores of user and computers cards."""
+
     if sum(comp_cards) > sum(user_cards):
         print(f"\tYour final hand: {user_cards}, final score: {sum(user_cards)}")
         print(f"\tComputer's final hand {comp_cards}, final score: {sum(comp_cards)}")
@@ -45,7 +49,9 @@ def scores():
         print(f"\tComputer's final hand {comp_cards}, final score: {sum(comp_cards)}")
         print("Its a draw")
 
-def play():
+def dealer():
+    """Main function where all the consecutive cards after first two gets added.
+    Works as a dealer."""
     check_cards()
     while True:
         next_or_pass = input("Type 'y' to get another card, type 'n' to pass: ")
@@ -85,7 +91,7 @@ while True:
     user_cards = [random.choice(cards), random.choice(cards)]
     comp_cards = [random.choice(cards), random.choice(cards)]
     print(logo)
-    play()
+    dealer()
     if input("Do you want to play blackjack (y/n): ").lower() != "y":
         break
     os.system("cls")
