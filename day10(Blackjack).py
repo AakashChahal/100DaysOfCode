@@ -21,11 +21,13 @@ def check_cards():
         print(f"\tYour final hand: {user_cards}, final score: {sum(user_cards)}")
         print(f"\tComputer's final hand: {comp_cards}, final score: {sum(comp_cards)}")
         print("You Lose. Computer has a Blackjack.")
+        return "lose"
 
     elif 11 in user_cards and 10 in user_cards:
         print(f"\tYour final hand: {user_cards}, final score: {sum(user_cards)}")
         print(f"\tComputer's final hand: {comp_cards}, final score: {sum(comp_cards)}")
         print("You won with a Blackjack.")
+        return "win"
 
     else:
         print(f"\tYour cards: {user_cards}, current score: {sum(user_cards)}")
@@ -52,7 +54,11 @@ def scores():
 def dealer():
     """Main function where all the consecutive cards after first two gets added.
     Works as a dealer."""
-    check_cards()
+    check = check_cards()
+    if check == "win":
+        pass
+    elif check == "lose":
+        pass
     while True:
         next_or_pass = input("Type 'y' to get another card, type 'n' to pass: ")
         if next_or_pass == "y":
