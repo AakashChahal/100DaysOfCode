@@ -1,14 +1,14 @@
 import random
 import os
 logo = """
-    __  ___       __             
+    __  ___       __
    / / / (_)___ _/ /_  ___  _____
   / /_/ / / __ `/ __ \/ _ \/ ___/
- / __  / / /_/ / / / /  __/ /    
-/_/ ///_/\__, /_/ /_/\___/_/     
+ / __  / / /_/ / / / /  __/ /
+/_/ ///_/\__, /_/ /_/\___/_/
    / /  /____/_      _____  _____
   / /   / __ \ | /| / / _ \/ ___/
- / /___/ /_/ / |/ |/ /  __/ /    
+ / /___/ /_/ / |/ |/ /  __/ /
 /_____/\____/|__/|__/\___/_/
 """
 
@@ -19,10 +19,10 @@ head = """
 """
 
 vs = """
- _    __    
+ _    __
 | |  / /____
 | | / / ___/
-| |/ (__  ) 
+| |/ (__  )
 |___/____(_)
 """
 
@@ -347,7 +347,7 @@ def play():
         print(f"Current Score: {score}")
         print("A: " + choice1["name"], ", ", choice1["description"], " from", choice1["country"])
         print(vs)
-        print(print("B: " + choice2["name"], ", ", choice2["description"], " from", choice2["country"]))
+        print("B: " + choice2["name"], ", ", choice2["description"], " from", choice2["country"])
         user_choice = input("A or B: ").lower()
         if user_choice == "a" and choice1["follower_count"] > choice2["follower_count"]:
             choice1, choice2 = choice2, random.choice(data)
