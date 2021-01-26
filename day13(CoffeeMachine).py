@@ -103,9 +103,9 @@ def make_coffee():
 while True:
     user_input = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if user_input == "report":
-        print(f"Water: {resources['water']}")
-        print(f"Milk: {resources['milk']}")
-        print(f"Coffee: {resources['coffee']}")
+        print(f"Water: {resources['water']}ml")
+        print(f"Milk: {resources['milk']}ml")
+        print(f"Coffee: {resources['coffee']}g")
         print(f"Money: ${money}")
 
     elif user_input == "stop":
