@@ -1,7 +1,12 @@
+import turtle
 from turtle import Turtle
 import random
-import time
-CAR_DISTANCE = list(range(-200, 230))
+CAR_DISTANCE = list(range(-200, 210))
+turtle.register_shape("car.gif")
+turtle.register_shape("car2.gif")
+turtle.register_shape("car3.gif")
+turtle.register_shape("car4.gif")
+SHAPE = ["car.gif", "car2.gif", "car3.gif", "car4.gif"]
 
 
 class Car:
@@ -14,7 +19,7 @@ class Car:
     def generate_new_car(self):
         if random.randint(1, 6) == 1:
             r, g, b = random.random(), random.random(), random.random()
-            new_car = Turtle(shape="square")
+            new_car = Turtle(shape=random.choice(SHAPE))
             new_car.color(r, g, b)
             new_car.shapesize(stretch_wid=1, stretch_len=2)
             new_car.penup()
