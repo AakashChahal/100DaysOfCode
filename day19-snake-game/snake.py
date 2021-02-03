@@ -16,7 +16,7 @@ class Snake:
             self.create_segment(position)
             
     def create_segment(self, pos):
-        new_snake_segment = Turtle(shape="circle")
+        new_snake_segment = Turtle(shape="square")
         new_snake_segment.color("green")
         new_snake_segment.penup()
         new_snake_segment.goto(pos)
@@ -48,3 +48,10 @@ class Snake:
     def right(self):
         if self.head.heading() != 180:
             self.head.seth(0)
+
+    def restart(self):
+        for seg in self.snake_segments:
+            seg.goto(10000, 10000)
+        self.snake_segments.clear()
+        self.create_snake()
+        self.head = self.snake_segments[0]
