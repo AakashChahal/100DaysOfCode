@@ -8,9 +8,7 @@ img = "blank_states_img.gif"
 screen.addshape(img)
 turtle.shape(img)
 states_data = pd.read_csv("50_states.csv")
-print(states_data)
 states = states_data.state.to_list()
-#
 # def get_mouse_coor(x, y):
 #     print(x, y)
 #
@@ -19,17 +17,15 @@ states = states_data.state.to_list()
 while len(guessed) != TOTAL:
     ans_state = screen.textinput(title=f"{len(guessed)}/{TOTAL}Guess State", prompt="Enter a state name: ").title()
     if ans_state == "Exit":
-        missing_state =[]
-        for state in states:
-            if state not in guessed:
-                missing_state.append(state)
-                t = turtle.Turtle()
-                t.ht()
-                t.penup()
-                t.speed(10)
-                state_pos = states_data[states_data.state == state]
-                t.setpos(int(state_pos.x), int(state_pos.y))
-                t.write(state)
+        missing_state = [state for state in states if state not in guessed]
+        for state in missing_state:
+            t = turtle.Turtle()
+            t.ht()
+            t.penup()
+            t.speed(10)
+            state_pos = states_data[states_data.state == state]
+            t.setpos(int(state_pos.x), int(state_pos.y))
+            t.write(state)
         break
     if ans_state in states:
         t = turtle.Turtle()
@@ -40,5 +36,5 @@ while len(guessed) != TOTAL:
         t.write(ans_state)
         guessed.append(ans_state)
 
-    
+
 turtle.mainloop()
