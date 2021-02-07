@@ -1,6 +1,7 @@
 from tkinter import *
 import time
 import math
+import winsound
 # CONSTANTS
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -60,6 +61,7 @@ def countdown(count):
         timer = window.after(1000, countdown, count-1)
         canvas.itemconfig(timer_text, text=f"{min_count}:{sec_count}")
     else:
+        winsound.Beep(900, 2000)
         start_timer()
 
 
