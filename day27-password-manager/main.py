@@ -2,6 +2,7 @@ from tkinter import *
 import os
 from tkinter import messagebox
 import random
+import pyperclip
 BG_COLOR = "#ffffff"
 
 # Generate password
@@ -15,6 +16,7 @@ def generate_pass():
     combination = small + caps + nums + symbols
     random.shuffle(combination)
     user_pass = ''.join(random.sample(combination, length))
+    pyperclip.copy(user_pass)
     password.insert(0, user_pass)
 
 # save password
