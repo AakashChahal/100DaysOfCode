@@ -12,6 +12,7 @@ def search_details():
     with open("data.json", "r") as file:
         user_data = json.load(file)
     messagebox.showinfo(title=f"{website}", message=f'Email: {user_data[website]["email"]}\nPassword: {user_data[website]["password"]}')
+    web_name.delete(0, END)
 
 # Generate password
 def generate_pass():
