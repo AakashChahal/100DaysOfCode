@@ -3,7 +3,15 @@ import os
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 BG_COLOR = "#ffffff"
+
+# search details
+def search_details():
+    website = web_name.get()
+    with open("data.json", "r") as file:
+        user_data = json.load(file)
+    messagebox.showinfo(title=f"{website}", message=f'email: {user_data[website]["email"]}\npassword: {user_data[website]["password"]}')
 
 # Generate password
 def generate_pass():
@@ -24,19 +32,27 @@ def save_pass():
     website = web_name.get()
     user_email = email.get()
     user_pass = password.get()
+    new_data = {
+        website:{
+        "email": user_email,
+        "password": user_pass,
+        }
+    }
     if website == "" or user_email == "" or user_pass == "":
         messagebox.showerror(title="Error", message="You didn't enter any value")
     else:
         save = messagebox.askyesno(title="Save Detalis?", message="Do you want to save the entered details?")
         if save:
-            if os.path.exists(".\my_passwords.txt"):
-                with open("my_passwords.txt", "a") as file:
-                    file.write(f"{str(website)} | {str(user_email)} | {str(user_pass)}\n")
-                messagebox.showinfo(title="Message", message="Password saved")
+            try:
+                with open("data.json", "r") as file:
+                    data = json.load(file)
+                    data.update(new_data)
+                with open("data.json", "w") as file:
+                    json.dump(data, file, indent=4)
 
-            else:
-                with open("my_passwords.txt", "w") as file:
-                    file.write(f"{str(website)} | {str(user_email)} | {str(user_pass)}\n")
+            except:
+                with open("data.json", "w") as file:
+                    json.dump(new_data, file, indent=4)
 
             web_name.delete(0, END)
             password.delete(0, END)
@@ -54,9 +70,13 @@ canvas.grid(column=1, row=0)
 # Website name
 label1 = Label(text="Website: ", bg=BG_COLOR, padx=5, pady=5)
 label1.grid(column=0, row=1)
-web_name = Entry(width=51)
+web_name = Entry(width=30)
 web_name.focus()
-web_name.grid(column=1, row=1, columnspan=2)
+web_name.grid(column=1, row=1)
+
+# search button
+search = Button(text="Search", command=search_details)
+search.grid(column=2, row=1)
 
 # email
 label2 = Label(text="Email: ", bg=BG_COLOR, padx=5, pady=5)
