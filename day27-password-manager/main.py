@@ -11,7 +11,7 @@ def search_details():
     website = web_name.get()
     with open("data.json", "r") as file:
         user_data = json.load(file)
-    messagebox.showinfo(title=f"{website}", message=f'email: {user_data[website]["email"]}\npassword: {user_data[website]["password"]}')
+    messagebox.showinfo(title=f"{website}", message=f'Email: {user_data[website]["email"]}\nPassword: {user_data[website]["password"]}')
 
 # Generate password
 def generate_pass():
@@ -50,7 +50,7 @@ def save_pass():
                 with open("data.json", "w") as file:
                     json.dump(data, file, indent=4)
 
-            except:
+            except FileNotFoundError:
                 with open("data.json", "w") as file:
                     json.dump(new_data, file, indent=4)
 
