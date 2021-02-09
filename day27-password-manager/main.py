@@ -9,9 +9,18 @@ BG_COLOR = "#ffffff"
 # search details
 def search_details():
     website = web_name.get()
-    with open("data.json", "r") as file:
-        user_data = json.load(file)
-    messagebox.showinfo(title=f"{website}", message=f'Email: {user_data[website]["email"]}\nPassword: {user_data[website]["password"]}')
+    try:
+        with open("data.json", "r") as file:
+            user_data = json.load(file)
+    except:
+        messagebox.showerror(title="Error", message="No data file found")
+    else:
+        if website in user_data:
+            messagebox.showinfo(title=f"{website}", message=f'Email: {user_data[website]["email"]}\nPassword: {user_data[website]["password"]}')
+        elif website == "":
+            messagebox.showerror(title="Error", message="Please enter a website to search")
+        else:
+            messagebox.showerror(title="Error", message=f"No record found for {website}")
     web_name.delete(0, END)
 
 # Generate password
@@ -76,7 +85,7 @@ web_name.focus()
 web_name.grid(column=1, row=1)
 
 # search button
-search = Button(text="Search", command=search_details)
+search = Button(text="Search", width=13, command=search_details)
 search.grid(column=2, row=1)
 
 # email
