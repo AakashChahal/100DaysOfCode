@@ -1,0 +1,18 @@
+{
+    "Google": {
+        "email": "mostusedemail@gmail.com",
+        "password": "password"
+    },
+    "Amazon": {
+        "email": "mostusedemail@gmail.com",
+        "password": "pass1234"
+    },
+    "Twitter": {
+        "email": "mostusedemail@gmail.com",
+        "password": "password1122"
+    },
+    "GitHub": {
+        "email": "mostusedemail@gmail.com",
+        "password": "1234password"
+    }
+}
