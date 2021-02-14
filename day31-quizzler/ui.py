@@ -1,6 +1,8 @@
 from tkinter import *
 from quiz_brain import QuizBrain
+import subprocess
 THEME_COLOR = "#375362"
+
 
 class QuizInterface:
 
@@ -25,10 +27,10 @@ class QuizInterface:
         )
         self.canvas.grid(column=0, row=1, columnspan=2, pady=50)
 
-        correct = PhotoImage(file=".\images\\true.png")
+        correct = PhotoImage(file=".\\images\\true.png")
         self.true_btn = Button(image=correct, highlightthickness=0, command=self.check_true)
         self.true_btn.grid(column=0, row=2)
-        wrong = PhotoImage(file=".\images\\false.png")
+        wrong = PhotoImage(file=".\\images\\false.png")
         self.false_btn = Button(image=wrong, highlightthickness=0, command=self.check_false)
         self.false_btn.grid(column=1, row=2)
 
@@ -40,6 +42,8 @@ class QuizInterface:
             self.true_btn.config(state="disabled")
             self.false_btn.config(state="disabled")
             self.canvas.itemconfig(self.question, text=f"Quiz Over\nYour Final Score: {self.score}/10")
+            self.window.after(2000, self.restart)
+
         else:
             self.total_questions += 1
             question = self.quiz.next_question()
@@ -65,3 +69,15 @@ class QuizInterface:
     def feedback(self):
         self.score_label.config(text=f"Score: {self.score}")
         self.window.after(1000, self.get_question)
+
+    def restart(self):
+        self.true_btn.destroy()
+        self.false_btn.destroy()
+        restart_btn = Button(text="RESTART", padx=10, pady=10, highlightthickness=0, command=self.start_new_quiz)
+        restart_btn.grid(column=0, row=2)
+        exit_btn = Button(text="EXIT", padx=10, pady=10,  highlightthickness=0, command=self.window.destroy)
+        exit_btn.grid(column=1, row=2)
+
+    def start_new_quiz(self):
+        self.window.destroy()
+        subprocess.call(['python', 'main.py'])
