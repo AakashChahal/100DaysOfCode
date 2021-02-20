@@ -7,7 +7,7 @@ class DataManager:
     def __init__(self):
         self.sheety_response = requests.get(url=sheety_endpoint)
         self.sheet_data = self.sheety_response.json()
-        # pprint(self.sheet_data)
+        pprint(self.sheet_data)
 
     def get_data(self):
         return self.sheet_data["prices"]

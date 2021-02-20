@@ -1,6 +1,10 @@
+import os
 import requests
+from dotenv import load_dotenv
+load_dotenv()
+
 HEADERS = {
-            "apikey": "EPJEbACajU0tuaul2TLsDtADLiWF6JUB"
+            "apikey": os.getenv("TEQUILIA_API")
         }
 flight_search_endpoint = "https://tequila-api.kiwi.com/locations/query"
 
@@ -13,7 +17,7 @@ class FlightData:
         self.update_endpoint = ""
 
     def get_flight_data(self, data):
-        self.update_endpoint = f"https://api.sheety.co/f492e1855f19e899b480867a62983303/flightDeals/prices/{data['id']}"
+        self.update_endpoint = f"{os.getenv('SHEETY_UPDATE_ENDPOINT')}{data['id']}"
         self.flight_parameters = {
             "term": data["city"]
         }

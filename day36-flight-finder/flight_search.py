@@ -1,22 +1,31 @@
 import requests
 from flight_data import HEADERS
+from datetime import datetime, timedelta
 tequila_endpoint = "https://tequila-api.kiwi.com/v2/search"
 
 
 class FlightSearch:
     def __init__(self):
         self.parameters = {}
+        self.date_from = (datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y")
+        self.date_to = (datetime.now() + timedelta(days=(6 * 30))).strftime("%d/%m/%Y")
         self.response = None
 
     def search_flight(self, data):
         self.parameters = {
             "fly_from": "DEL",
             "fly_to": data["iataCode"],
-            "dateFrom": "20/02/2021",
-            "dateTo": "22/08/2021",
+            "dateFrom": self.date_from,
+            "dateTo": self.date_to,
+            "max_fly_duration": 20,
             "curr": "INR"
         }
+        # print(self.date)
         self.response = requests.get(url=tequila_endpoint, params=self.parameters, headers=HEADERS)
         # print(response.json().keys())
         # print(self.response)
-        print(f"{data['city']}: ₹{self.response.json()['data'][0]['price']}")
+        flight_price = self.response.json()['data'][0]['price']
+        if flight_price <= data['lowestPrice']:
+            print(f"{data['city']}: ₹{flight_price}")
+            print(f"Booking link: {self.response.json()['data'][0]['deep_link']}")
+            print("-------------------------------------------------------")
