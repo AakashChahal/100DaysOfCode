@@ -1,7 +1,11 @@
+import requests
 from bs4 import BeautifulSoup
 
-with open("website.html") as file:
-    content = file.read()
+URL = "https://www.empireonline.com/movies/features/best-movies-2/"
 
-soup = BeautifulSoup(content, "html.parser")
-print(soup.title)
+response = requests.get(URL)
+website_html = response.text
+soup = BeautifulSoup(website_html, "html.parser")
+all_movies = soup.find_all(name="h3", class_="title")
+print(all_movies)
+# print(soup.prettify())
