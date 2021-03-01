@@ -26,5 +26,5 @@ if price <= "1,40,000.00":
     connection.sendmail(
         from_addr=my_email,
         to_addrs=my_email,
-        msg=f"Price is down to Rs.{price}",
+        msg=f"Subject:Amazon Price Alert!\n\n{price}\nLink: {url}",
     )
