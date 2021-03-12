@@ -60,7 +60,7 @@ class Store {
             books = [];
         }
         else{
-            books = JSON.parse.localStorage.getItem("books")
+            books = JSON.parse(localStorage.getItem('books'));
         }
         return books;
     }
@@ -68,7 +68,7 @@ class Store {
     static addBook(book) {
         const books = Store.getBooks();
         books.push(book);
-        localStorage.setItem("books", JSON.stringify(book));
+        localStorage.setItem("books", JSON.stringify(books));
     }
 
     static removeBook(isbn) {  
@@ -99,7 +99,7 @@ document.getElementById("book-form").addEventListener('submit', (e) => {
     else {
         const newBook = new Book(title, author, isbn);
         UI.addBookToList(newBook);
-        Store.addBook(book)
+        Store.addBook(newBook);
         UI.showAlert("Book Added", "success");
         UI.clearFields();
     }
@@ -109,5 +109,6 @@ document.getElementById("book-form").addEventListener('submit', (e) => {
 // Event: Remove a book
 document.getElementById("book-list").addEventListener('click', (e) => {
     UI.deleteBook(e.target);
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
     UI.showAlert("Book removed", "success")
 })
