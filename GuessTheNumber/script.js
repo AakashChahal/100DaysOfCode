@@ -5,6 +5,7 @@ let lives = 5;
 let answer = Math.trunc(Math.random() * 20 + 1);
 console.log(answer);
 // console.log(answer);
+let contGame = true;
 
 document.querySelector(".check").addEventListener("click", function () {
     const guessValue = Number(document.querySelector(".guess").value);
@@ -12,21 +13,7 @@ document.querySelector(".check").addEventListener("click", function () {
         if (!guessValue)
             document.querySelector(".message").textContent =
                 "⛔ Enter a number(1 to 20)";
-        else if (guessValue > answer) {
-            lives--;
-            document.querySelector(".message").textContent = "🔼 Too High";
-            document.querySelector(".lives").textContent = lives;
-        } else if (guessValue < answer) {
-            lives--;
-            document.querySelector(".message").textContent = "🔽 Too Low";
-            document.querySelector(".lives").textContent = lives;
-        } else {
-            document.querySelector(".message").textContent =
-                "✅ You guessed it";
-            document.querySelector("body").style.backgroundColor = "#60b347";
-            document.querySelector(".number").style.width = "30rem";
-            document.querySelector(".number").textContent = answer;
-        }
+        else contGame = isGuessCorrect(guessValue);
     } else {
         if (lives === 1 && guessValue === answer) {
             document.querySelector(".message").textContent =
@@ -53,3 +40,17 @@ document.querySelector(".again").addEventListener("click", (e) => {
     document.querySelector("body").style.backgroundColor = "#222";
     document.querySelector(".number").textContent = "?";
 });
+
+function isGuessCorrect(value) {
+    if (value !== answer) {
+        lives--;
+        document.querySelector(".message").textContent =
+            guessValue > answer ? "🔼 Too High" : "🔽 Too Low";
+        document.querySelector(".lives").textContent = lives;
+    } else {
+        document.querySelector(".message").textContent = "✅ You guessed it";
+        document.querySelector("body").style.backgroundColor = "#60b347";
+        document.querySelector(".number").style.width = "30rem";
+        document.querySelector(".number").textContent = answer;
+    }
+}
