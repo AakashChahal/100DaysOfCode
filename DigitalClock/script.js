@@ -1,8 +1,10 @@
 const dt = new Date();
+
 const date = dt.getDate();
 const month = dt.getMonth();
 const year = dt.getFullYear();
 const day = dt.getDay();
+
 let currHr = new Date().getHours();
 let currMin = new Date().getMinutes();
 let currSec = new Date().getSeconds();
