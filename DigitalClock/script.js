@@ -5,10 +5,9 @@ const month = dt.getMonth();
 const year = dt.getFullYear();
 const day = dt.getDay();
 
-let currHr = new Date().getHours();
-let currMin = new Date().getMinutes();
-let currSec = new Date().getSeconds();
-let count = 0;
+let currHr;
+let currMin;
+let currSec;
 
 const months = [
     "January",
@@ -27,16 +26,16 @@ const months = [
 ];
 
 const days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
 ];
 
-document.getElementById("date").textContent +=
+document.getElementById("d").textContent +=
     date + " " + months[month] + " " + year + ", " + days[day];
 setInterval(function () {
     currSec = new Date().getSeconds();
@@ -50,7 +49,16 @@ setInterval(function () {
         : (document.getElementById("min").textContent = currMin);
 
     currHr = new Date().getHours();
-    currHr < 10
-        ? (document.getElementById("hr").textContent = "0" + currHr)
-        : (document.getElementById("hr").textContent = currHr);
+    if (currHr < 12) {
+        if (currHr < 10) {
+            document.getElementById("hr").textContent = "0" + currHr;
+        }
+        document.getElementById("AmPm").textContent = "AM";
+    } else {
+        currHr -= 12;
+        if (currHr < 10) {
+            document.getElementById("hr").textContent = "0" + currHr;
+        }
+        document.getElementById("AmPm").textContent = "PM";
+    }
 }, 1000);
