@@ -6,7 +6,7 @@ let imageNum = 0;
 
 // functions
 const showNextImage = function () {
-    if (imageNum < 9) {
+    if (imageNum < 8) {
         imageNum++;
         image.src = `images/image${imageNum}.jpg`;
     } else {
