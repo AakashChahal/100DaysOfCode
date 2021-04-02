@@ -48,7 +48,7 @@ while True:
         else:
             print("You won!!")
     elif user_choice == paper:
-        comp_choice = random.choice([paper, scissors])
+        comp_choice = random.choice(choices)
         print(comp_choice)
         if comp_choice == rock:
             print("You won!!")
@@ -57,7 +57,7 @@ while True:
         else:
             print("You lost")
     else:
-        comp_choice = random.choice([rock, scissors])
+        comp_choice = random.choice(choices)
         print(comp_choice)
         if comp_choice == rock:
             print("You lost")
