@@ -5,10 +5,11 @@ body {
 .calculator {
     display: grid;
     grid-template-rows: 1fr 2fr;
+    gap: 10px;
     border: solid black;
     border-radius: 10px;
     height: 500px;
-    width: 30%;
+    width: 25%;
     margin: 7% auto;
     padding: 10px;
     align-self: center;
@@ -19,8 +20,21 @@ body {
     border-radius: 10px;
 }
 
-br {
-    margin: 1%;
-    width: 100px;
-    border: 2px solid black;
+.numpad {
+    display: flex;
+}
+
+.row {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.col {
+    font-size: 1.5rem;
+    font-weight: 900;
+    border: solid black;
+    border-radius: 10px;
+    margin: 1px;
+    padding: 2.1rem;
 }
