@@ -9,41 +9,39 @@
     </head>
     <body>
         <div class="calculator">
-            <div class="output">
-                <h3>0</h3>
-            </div>
+            <div id="output">0</div>
             <div class="numpad">
                 <div class="row row-1">
-                    <span class="col col-1">CLEAR</span>
-                    <!-- <span class="col col-2">Clear</span> -->
-                    <span class="col col-3">DEL</span>
-                    <span class="col col-4">+</span>
+                    <span class="col col-1" id="clear">CLEAR</span>
+                    <span class="col col-3" id="del">DEL</span>
+                    <span class="col col-4 op">+</span>
                 </div>
                 <div class="row row-2">
-                    <span class="col col-1">1</span>
-                    <span class="col col-2">2</span>
-                    <span class="col col-3">3</span>
-                    <span class="col col-4">-</span>
+                    <span class="col col-1 num">1</span>
+                    <span class="col col-2 num">2</span>
+                    <span class="col col-3 num">3</span>
+                    <span class="col col-4 op">-</span>
                 </div>
                 <div class="row row-3">
-                    <span class="col col-1">4</span>
-                    <span class="col col-2">5</span>
-                    <span class="col col-3">6</span>
-                    <span class="col col-4">&Cross;</span>
+                    <span class="col col-1 num">4</span>
+                    <span class="col col-2 num">5</span>
+                    <span class="col col-3 num">6</span>
+                    <span class="col col-4 op">×</span>
                 </div>
                 <div class="row row-4">
-                    <span class="col col-1">7</span>
-                    <span class="col col-2">8</span>
-                    <span class="col col-3">9</span>
-                    <span class="col col-4">&divide;</span>
+                    <span class="col col-1 num">7</span>
+                    <span class="col col-2 num">8</span>
+                    <span class="col col-3 num">9</span>
+                    <span class="col col-4 op">&divide;</span>
                 </div>
                 <div class="row row-5">
-                    <span class="col col-1">0</span>
+                    <span class="col col-1 num">0</span>
                     <span class="col col-2">.</span>
-                    <span class="col col-3">00</span>
-                    <span class="col col-4"> &equals; </span>
+                    <span class="col col-3 num">00</span>
+                    <span class="col col-4" id="eq"> &equals; </span>
                 </div>
             </div>
         </div>
+        <script src="app.js"></script>
     </body>
 </html>
