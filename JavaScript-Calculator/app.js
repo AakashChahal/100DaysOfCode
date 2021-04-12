@@ -10,7 +10,6 @@ const backspace = document.getElementById("del");
 // Functions
 const evalExpression = function () {
     console.log(output);
-    console.log(output+);
 };
 
 const showNumOnScreen = function (e) {
