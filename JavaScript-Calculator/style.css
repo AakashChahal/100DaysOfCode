@@ -8,26 +8,32 @@ body {
     gap: 10px;
     border: solid black;
     border-radius: 10px;
-    height: 500px;
-    width: 25%;
+    height: 600px;
+    width: fit-content;
     margin: 7% auto;
-    padding: 10px;
+    /* padding: 10px; */
     align-self: center;
 }
 
 .output {
     background: rgb(255, 255, 255);
     border-radius: 10px;
+    height: 10rem;
+    font-size: 3rem;
+    text-align: end;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .numpad {
-    display: flex;
+    display: grid;
 }
 
 .row {
     display: grid;
-    align-items: center;
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    /* align-items: center;
+    justify-content: center; */
 }
 
 .col {
@@ -36,5 +42,15 @@ body {
     border: solid black;
     border-radius: 10px;
     margin: 1px;
-    padding: 2.1rem;
+    text-align: center;
+    padding: 1.5rem 2.1rem;
+}
+
+.row-1 > .col-1 {
+    grid-column: 1 / span 2;
+}
+
+.col:hover {
+    background-color: rgba(12, 12, 12, 0.3);
+    cursor: pointer;
 }
