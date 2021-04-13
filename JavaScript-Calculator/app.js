@@ -26,7 +26,7 @@ const getOperator = function (e) {
         const operator = e.target.textContent;
         const val = outputEl.textContent;
         evalExpression(operator);
-        outputEl.textContent += ` ${operator} `;
+        outputEl.textContent += operator;
     }
 };
 
