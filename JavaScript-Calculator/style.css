@@ -3,26 +3,30 @@ body {
 }
 
 .calculator {
+    background: gainsboro;
     display: grid;
-    grid-template-rows: 1fr 2fr;
-    gap: 10px;
-    border: solid black;
+    border: 10px solid black;
     border-radius: 10px;
     height: 600px;
     width: fit-content;
-    margin: 7% auto;
-    /* padding: 10px; */
+    margin: 4% auto;
+    padding: 10px;
     align-self: center;
 }
 
-#output {
+.output {
     background: rgb(255, 255, 255);
     border-radius: 10px;
-    height: 10rem;
+    height: fit-content;
     font-size: 3rem;
     text-align: end;
     margin-bottom: 0;
     padding: 0;
+}
+
+#tempOut {
+    font-style: oblique;
+    font-weight: 1;
 }
 
 .numpad {
