@@ -13,6 +13,8 @@ const equal = document.getElementById("eq");
 
 // FUNCTIONS
 const getNumberFromNumpad = (e) => {
+    output.classList.add("hide");
+    inputNumber.classList.remove("hide");
     inputNumber.textContent === "0"
         ? (inputNumber.textContent = e.target.textContent)
         : (inputNumber.textContent += e.target.textContent);
@@ -22,6 +24,8 @@ const getNumberFromNumpad = (e) => {
 
 const currentOperator = (e) => {
     inputNumber.textContent = "";
+    output.classList.add("hide");
+    inputNumber.classList.add("hide");
     const currOp = e.target.textContent;
     operator.textContent = currOp;
     console.log(currNumber);
@@ -70,11 +74,12 @@ const showAnswer = () => {
         default:
             break;
     }
-    inputNumber.textContent = "";
+    currNumber = "";
     operator.textContent = "";
     tempOutput.textContent = "";
     output.textContent = currEval;
     output.classList.remove("hide");
+    inputNumber.classList.add("hide");
 };
 
 // EVENTS
