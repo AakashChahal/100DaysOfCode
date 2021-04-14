@@ -2,14 +2,18 @@ body {
     background-color: aquamarine;
 }
 
+.hide {
+    display: none;
+}
+
 .calculator {
     background: gainsboro;
     display: grid;
     border: 10px solid black;
     border-radius: 10px;
-    height: 600px;
+    height: 650px;
     width: fit-content;
-    margin: 4% auto;
+    margin: 2% auto;
     padding: 10px;
     align-self: center;
 }
@@ -20,8 +24,8 @@ body {
     height: fit-content;
     font-size: 3rem;
     text-align: end;
-    margin-bottom: 0;
-    padding: 0;
+    margin-bottom: 1rem;
+    padding: 1rem;
 }
 
 #tempOut {
@@ -36,8 +40,6 @@ body {
 .row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* align-items: center;
-    justify-content: center; */
 }
 
 .col {
