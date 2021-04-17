@@ -13,12 +13,79 @@ const equal = document.getElementById("eq");
 
 // FUNCTIONS
 const getNumberFromNumpad = (e) => {
-    if (Number(tempOutput)) {
+    if (tempOutput.textContent.includes("=")) {
+        tempOutput.textContent = "";
         inputNumber.textContent = e.target.textContent;
     } else {
         inputNumber.textContent === "0" || inputNumber.textContent === ""
             ? (inputNumber.textContent = e.target.textContent)
             : (inputNumber.textContent += e.target.textContent);
+    }
+};
+
+const calcAnswer = function () {
+    switch (
+        tempOutput.textContent.slice(tempOutput.textContent.indexOf(-2, -1))
+    ) {
+        case "+":
+            if (currAns == 0) {
+                currAns =
+                    currNumber +
+                    Number(
+                        tempOutput.textContent.slice(
+                            0,
+                            tempOutput.textContent.indexOf(" ")
+                        )
+                    );
+            } else {
+                currAns += currNumber;
+            }
+            break;
+        case "-":
+            if (currAns == 0) {
+                currAns =
+                    currNumber -
+                    Number(
+                        tempOutput.textContent.slice(
+                            0,
+                            tempOutput.textContent.indexOf(" ")
+                        )
+                    );
+            } else {
+                currAns -= currNumber;
+            }
+            break;
+        case "×":
+            if (currAns == 0) {
+                currAns =
+                    currNumber *
+                    Number(
+                        tempOutput.textContent.slice(
+                            0,
+                            tempOutput.textContent.indexOf(" ")
+                        )
+                    );
+            } else {
+                currAns *= currNumber;
+            }
+            break;
+        case "÷":
+            if (currAns == 0) {
+                currAns =
+                    currNumber /
+                    Number(
+                        tempOutput.textContent.slice(
+                            0,
+                            tempOutput.textContent.indexOf(" ")
+                        )
+                    );
+            } else {
+                currAns /= currNumber;
+            }
+            break;
+
+        default:
+            break;
     }
 };
 
@@ -28,76 +95,16 @@ const currentOperator = (e) => {
     currOp = e.target.textContent;
     if (countOperator <= 1) tempOutput.textContent = `${currNumber} ${currOp}`;
     else {
-        switch (
-            tempOutput.textContent.slice(tempOutput.textContent.indexOf(-2, -1))
-        ) {
-            case "+":
-                if (currAns == 0) {
-                    currAns =
-                        currNumber +
-                        Number(
-                            tempOutput.textContent.slice(
-                                0,
-                                tempOutput.textContent.indexOf(" ")
-                            )
-                        );
-                } else {
-                    currAns += currNumber;
-                }
-                break;
-            case "-":
-                if (currAns == 0) {
-                    currAns =
-                        currNumber -
-                        Number(
-                            tempOutput.textContent.slice(
-                                0,
-                                tempOutput.textContent.indexOf(" ")
-                            )
-                        );
-                } else {
-                    currAns -= currNumber;
-                }
-                break;
-            case "×":
-                if (currAns == 0) {
-                    currAns =
-                        currNumber *
-                        Number(
-                            tempOutput.textContent.slice(
-                                0,
-                                tempOutput.textContent.indexOf(" ")
-                            )
-                        );
-                } else {
-                    currAns *= currNumber;
-                }
-                break;
-            case "÷":
-                if (currAns == 0) {
-                    currAns =
-                        currNumber /
-                        Number(
-                            tempOutput.textContent.slice(
-                                0,
-                                tempOutput.textContent.indexOf(" ")
-                            )
-                        );
-                } else {
-                    currAns /= currNumber;
-                }
-                break;
-
-            default:
-                break;
-        }
+        calcAnswer();
         tempOutput.textContent = `${currAns} ${currOp}`;
     }
     inputNumber.textContent = "";
 };
 
 const showAnswer = () => {
-    currentOperator();
+    currNumber = Number(inputNumber.textContent);
+    calcAnswer();
+    tempOutput.textContent += " " + currNumber + " =";
     inputNumber.textContent = currAns;
 };
 
