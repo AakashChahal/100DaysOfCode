@@ -2,84 +2,103 @@
 
 // VARIABLES
 let currNumber = "";
-let currEval = 0;
+let currAns = 0;
+let currOp = "";
+let countOperator = 0;
 const inputNumber = document.getElementById("numbers");
-const operator = document.getElementById("operator");
 const tempOutput = document.getElementById("tempOut");
-const output = document.getElementById("answer");
 const numpad = document.querySelectorAll(".num");
 const allOperators = document.querySelectorAll(".op");
 const equal = document.getElementById("eq");
 
 // FUNCTIONS
 const getNumberFromNumpad = (e) => {
-    output.classList.add("hide");
-    inputNumber.classList.remove("hide");
-    inputNumber.textContent === "0"
-        ? (inputNumber.textContent = e.target.textContent)
-        : (inputNumber.textContent += e.target.textContent);
-    currNumber = Number(inputNumber.textContent);
-    // console.log(currNumber);
+    if (Number(tempOutput)) {
+        inputNumber.textContent = e.target.textContent;
+    } else {
+        inputNumber.textContent === "0" || inputNumber.textContent === ""
+            ? (inputNumber.textContent = e.target.textContent)
+            : (inputNumber.textContent += e.target.textContent);
+    }
 };
 
 const currentOperator = (e) => {
-    inputNumber.textContent = "";
-    output.classList.add("hide");
-    inputNumber.classList.add("hide");
-    const currOp = e.target.textContent;
-    operator.textContent = currOp;
-    console.log(currNumber);
-    if (currEval === 0) {
-        currEval = currNumber;
-    } else {
-        switch (currOp) {
+    countOperator += 1;
+    currNumber = Number(inputNumber.textContent);
+    currOp = e.target.textContent;
+    if (countOperator <= 1) tempOutput.textContent = `${currNumber} ${currOp}`;
+    else {
+        switch (
+            tempOutput.textContent.slice(tempOutput.textContent.indexOf(-2, -1))
+        ) {
             case "+":
-                currEval += Number(currNumber);
+                if (currAns == 0) {
+                    currAns =
+                        currNumber +
+                        Number(
+                            tempOutput.textContent.slice(
+                                0,
+                                tempOutput.textContent.indexOf(" ")
+                            )
+                        );
+                } else {
+                    currAns += currNumber;
+                }
                 break;
             case "-":
-                currEval -= Number(currNumber);
+                if (currAns == 0) {
+                    currAns =
+                        currNumber -
+                        Number(
+                            tempOutput.textContent.slice(
+                                0,
+                                tempOutput.textContent.indexOf(" ")
+                            )
+                        );
+                } else {
+                    currAns -= currNumber;
+                }
                 break;
             case "×":
-                currEval *= Number(currNumber);
+                if (currAns == 0) {
+                    currAns =
+                        currNumber *
+                        Number(
+                            tempOutput.textContent.slice(
+                                0,
+                                tempOutput.textContent.indexOf(" ")
+                            )
+                        );
+                } else {
+                    currAns *= currNumber;
+                }
                 break;
             case "÷":
-                currEval /= Number(currNumber);
+                if (currAns == 0) {
+                    currAns =
+                        currNumber /
+                        Number(
+                            tempOutput.textContent.slice(
+                                0,
+                                tempOutput.textContent.indexOf(" ")
+                            )
+                        );
+                } else {
+                    currAns /= currNumber;
+                }
                 break;
 
             default:
                 break;
         }
+        tempOutput.textContent = `${currAns} ${currOp}`;
     }
-    tempOutput.textContent = currEval;
+    inputNumber.textContent = "";
 };
 
 const showAnswer = () => {
-    const currOp = operator.textContent;
-    // operator.textContent = currOp;
-    console.log(currNumber);
-    switch (currOp) {
-        case "+":
-            currEval += Number(currNumber);
-            break;
-        case "-":
-            currEval -= Number(currNumber);
-            break;
-        case "×":
-            currEval *= Number(currNumber);
-            break;
-        case "÷":
-            currEval /= Number(currNumber);
-            break;
-
-        default:
-            break;
-    }
-    currNumber = "";
-    operator.textContent = "";
-    tempOutput.textContent = "";
-    output.textContent = currEval;
-    output.classList.remove("hide");
-    inputNumber.classList.add("hide");
+    currentOperator();
+    inputNumber.textContent = currAns;
 };
 
 // EVENTS
@@ -95,12 +114,9 @@ equal.addEventListener("click", showAnswer);
 
 document.getElementById("clear").addEventListener("click", function () {
     inputNumber.textContent = "0";
-    operator.textContent = "";
-    tempOutput.textContent = "";
-    currEval = 0;
-    output.textContent = "";
-    output.classList.add("hide");
-    console.log("done");
+    tempOutput.textContent = "0";
+    currAns = 0;
+    countOperator = 0;
 });
 
 document.getElementById("del").addEventListener("click", function () {
