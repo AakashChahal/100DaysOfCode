@@ -56,13 +56,12 @@ const calcAnswer = function () {
         case "×":
             if (currAns == 0) {
                 currAns =
-                    currNumber *
                     Number(
                         tempOutput.textContent.slice(
                             0,
                             tempOutput.textContent.indexOf(" ")
                         )
-                    );
+                    ) * currNumber;
             } else {
                 currAns *= currNumber;
             }
@@ -70,13 +69,12 @@ const calcAnswer = function () {
         case "÷":
             if (currAns == 0) {
                 currAns =
-                    currNumber /
                     Number(
                         tempOutput.textContent.slice(
                             0,
                             tempOutput.textContent.indexOf(" ")
                         )
-                    );
+                    ) / currNumber;
             } else {
                 currAns /= currNumber;
             }
