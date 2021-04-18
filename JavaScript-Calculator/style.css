@@ -2,10 +2,6 @@ body {
     background-color: rgb(0, 218, 145);
 }
 
-.hide {
-    display: none;
-}
-
 .calculator {
     background: gainsboro;
     display: grid;
