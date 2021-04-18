@@ -26,9 +26,7 @@ const getNumberFromNumpad = (e) => {
 };
 
 const calcAnswer = function () {
-    switch (
-        tempOutput.textContent.slice(tempOutput.textContent.indexOf(-2, -1))
-    ) {
+    switch (tempOutput.textContent.slice(-1)) {
         case "+":
             if (currAns == 0) {
                 currAns =
