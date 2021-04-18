@@ -16,6 +16,8 @@ const getNumberFromNumpad = (e) => {
     if (tempOutput.textContent.includes("=")) {
         tempOutput.textContent = "";
         inputNumber.textContent = e.target.textContent;
+        countOperator = 0;
+        currAns = 0;
     } else {
         inputNumber.textContent === "0" || inputNumber.textContent === ""
             ? (inputNumber.textContent = e.target.textContent)
@@ -30,13 +32,12 @@ const calcAnswer = function () {
         case "+":
             if (currAns == 0) {
                 currAns =
-                    currNumber +
                     Number(
                         tempOutput.textContent.slice(
                             0,
                             tempOutput.textContent.indexOf(" ")
                         )
-                    );
+                    ) + currNumber;
             } else {
                 currAns += currNumber;
             }
@@ -44,13 +45,12 @@ const calcAnswer = function () {
         case "-":
             if (currAns == 0) {
                 currAns =
-                    currNumber -
                     Number(
                         tempOutput.textContent.slice(
                             0,
                             tempOutput.textContent.indexOf(" ")
                         )
-                    );
+                    ) - currNumber;
             } else {
                 currAns -= currNumber;
             }
