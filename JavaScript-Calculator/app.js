@@ -101,13 +101,6 @@ const currentOperator = (e) => {
     inputNumber.textContent = "";
 };
 
-const showAnswer = () => {
-    currNumber = Number(inputNumber.textContent);
-    calcAnswer();
-    tempOutput.textContent += " " + currNumber + " =";
-    inputNumber.textContent = currAns;
-};
-
 // EVENTS
 numpad.forEach((num) => {
     num.addEventListener("click", getNumberFromNumpad);
@@ -117,7 +110,12 @@ allOperators.forEach((op) => {
     op.addEventListener("click", currentOperator);
 });
 
-equal.addEventListener("click", showAnswer);
+equal.addEventListener("click", function () {
+    currNumber = Number(inputNumber.textContent);
+    calcAnswer();
+    tempOutput.textContent += " " + currNumber + " =";
+    inputNumber.textContent = currAns;
+});
 
 document.getElementById("clear").addEventListener("click", function () {
     inputNumber.textContent = "0";
