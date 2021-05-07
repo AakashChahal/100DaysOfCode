@@ -10,9 +10,12 @@ const tempOutput = document.getElementById("tempOut");
 const numpad = document.querySelectorAll(".num");
 const allOperators = document.querySelectorAll(".op");
 const equal = document.getElementById("eq");
+const audio = document.getElementById("sound");
 
 // FUNCTIONS
 const getNumberFromNumpad = (e) => {
+    audio.currentTime = 0;
+    audio.play();
     if (tempOutput.textContent.includes("=")) {
         tempOutput.textContent = "";
         inputNumber.textContent = e.target.textContent;
@@ -86,6 +89,8 @@ const calcAnswer = function () {
 };
 
 const currentOperator = (e) => {
+    audio.currentTime = 0;
+    audio.play();
     countOperator += 1;
     currNumber = Number(inputNumber.textContent);
     currOp = e.target.textContent;
@@ -107,6 +112,8 @@ allOperators.forEach((op) => {
 });
 
 equal.addEventListener("click", function () {
+    audio.currentTime = 0;
+    audio.play();
     currNumber = Number(inputNumber.textContent);
     calcAnswer();
     tempOutput.textContent += " " + currNumber + " =";
@@ -114,6 +121,8 @@ equal.addEventListener("click", function () {
 });
 
 document.getElementById("clear").addEventListener("click", function () {
+    audio.currentTime = 0;
+    audio.play();
     inputNumber.textContent = "0";
     tempOutput.textContent = "0";
     currAns = 0;
@@ -121,6 +130,8 @@ document.getElementById("clear").addEventListener("click", function () {
 });
 
 document.getElementById("del").addEventListener("click", function () {
+    audio.currentTime = 0;
+    audio.play();
     inputNumber.textContent = inputNumber.textContent.slice(0, -1);
     if (inputNumber.textContent === "") {
         inputNumber.textContent = "0";
